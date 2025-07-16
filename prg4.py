@@ -1,34 +1,31 @@
 import pandas as pd
 
 def explore_dataset(file_path):
-    # Check if the file is a CSV or Excel file
-    if file_path.endswith('.csv'):
-        # Load CSV file into a pandas DataFrame
-        df = pd.read_csv(file_path)
-    elif file_path.endswith('.xlsx'):
-        # Load Excel file into a pandas DataFrame
-        df = pd.read_excel(file_path)
-    else:
-        print("Unsupported file format. Please provide a CSV or Excel file.")
-        return
+    try:
+        if file_path.endswith('.csv'):
+            df = pd.read_csv(file_path)
+        elif file_path.endswith('.xlsx'):
+            df = pd.read_excel(file_path)
+        else:
+            print("Unsupported file format. Please provide a CSV or Excel file.")
+            return
 
-    # Display basic information about the DataFrame
-    print("Dataset information:")
-    print(df.info())
+        print("Dataset Information:")
+        print(df.info())
+        print("\nFirst few rows of the dataset:")
+        print(df.head())
+        print("\nSummary statistics:")
+        print(df.describe())
+        print("\nUnique values for categorical columns:")
+        for column in df.select_dtypes(include='object').columns:
+            print(f"{column}: {df[column].unique()}")
 
-    # Display the first few rows of the DataFrame
-    print("\nFirst few rows of the dataset:")
-    print(df.head())
+    except FileNotFoundError:
+        print("File not found. Please check the path.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
-    # Display summary statistics for numerical columns
-    print("\nSummary statistics:")
-    print(df.describe())
+# Call the function with a proper file path
+file_path = r'C:\Users\Lenovo\OneDrive\Desktop\IRIS.csv'
+explore_dataset(file_path)
 
-    # Display unique values for categorical columns
-    print("\nUnique values for categorical columns:")
-    for column in df.select_dtypes(include='object').columns:
-        print(f"{column}: {df[column].unique()}")
-
-if __name__ == "__main__":
-    file_path = input("Enter the path to your CSV or Excel file: ")
-    explore_dataset(file_path)
