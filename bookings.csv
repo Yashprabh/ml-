@@ -1,0 +1,6 @@
+booking_id,user_id,dj_id,event_date,event_type,location,status
+1,101,201,2025-08-15,Wedding,Bangalore,Confirmed
+2,102,202,2025-08-20,Birthday,Mumbai,Pending
+3,103,203,2025-09-01,Corporate,Delhi,Cancelled
+4,104,201,2025-09-05,College Fest,Chennai,Confirmed
+5,105,204,2025-09-10,Private Party,Pune,Pending
